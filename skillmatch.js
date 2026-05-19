@@ -168,3 +168,39 @@ function gerarRecomendacaoEstudo(resultados) {
 
   return `Priorize estudar: ${habilidadesPriorizadas.join(", ")}. Esses temas aparecem com frequencia nas vagas analisadas.`; // Retorna uma mensagem recomendando as habilidades a serem priorizadas para estudo, listando as habilidades faltantes mais comuns entre as vagas analisadas
 }
+
+function criarContadorDeAnalises() {
+  // Função para criar um contador de análises utilizando closure, permitindo contar o número de análises realizadas durante a execução do sistema
+  let total = 0;
+
+  return function incrementar() {
+    // Função interna que incrementa o contador total de análises e retorna o valor atualizado
+    total += 1;
+    return total;
+  };
+}
+
+function finalizarAnalise(nomeCandidato, callback) {
+  // Função para finalizar a análise e executar um callback com o nome do candidato
+  console.log("\nAnalise finalizada.");
+  callback(nomeCandidato);
+}
+
+function exibirMensagemFinal(nome) {
+  // Função para exibir a mensagem final ao candidato
+
+  console.log(
+    `${nome}, revise as habilidades faltantes e atualize seu plano de estudos.`, // Exibe uma mensagem personalizada para o candidato, incentivando-o a revisar as habilidades faltantes e atualizar seu plano de estudos com base nos resultados da análise
+  );
+}
+
+function buscarVagasSimuladas() {
+  // Função para simular a busca de vagas, retornando uma promessa que resolve com o array de vagas após um atraso de 1 segundo, simulando uma operação assíncrona de busca de vagas em um banco de dados ou API, permitindo que o sistema continue a execução enquanto aguarda a resolução da promessa com as vagas disponíveis para análise de compatibilidade.
+  return new Promise((resolve) => {
+    // Retorna uma nova promessa que simula a busca de vagas com um atraso
+    setTimeout(() => {
+      // Simula um atraso de 1 segundo para representar o tempo de busca de vagas
+      resolve(vagas); // Resolve a promessa com o array de vagas definido anteriormente, permitindo que o sistema continue a execução após a "busca" ser concluída
+    }, 1000); // O tempo de atraso é definido em milissegundos (1000 ms = 1 segundo)
+  });
+}
